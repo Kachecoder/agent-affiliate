@@ -1,12 +1,22 @@
 from typing import List, Type
 
-from reworkd_platform.db.crud.oauth import OAuthCrud
-from reworkd_platform.schemas.user import UserBase
-from reworkd_platform.web.api.agent.tools.code import Code
-from reworkd_platform.web.api.agent.tools.image import Image
-from reworkd_platform.web.api.agent.tools.search import Search
-from reworkd_platform.web.api.agent.tools.sidsearch import SID
-from reworkd_platform.web.api.agent.tools.tool import Tool
+from reworked_platform.db.crud.oauth import OAuthCrud
+from reworked_platform.schemas.user import UserBase
+from reworked_platform.web.api.agent.tools.code import Code
+from reworked_platform.web.api.agent.tools.image import Image
+from reworked_platform.web.api.agent.tools.search import Search
+from reworked_platform.web.api.agent.tools.sidsearch import SID
+from reworked_platform.web.api.agent.tools.tool import Tool
+from reworked_platform.web.api.agent.tools.market_research import MarketResearch
+from reworked_platform.web.api.agent.tools.content_generation import ContentGeneration
+from reworked_platform.web.api.agent.tools.web_development import WebDevelopment
+from reworked_platform.web.api.agent.tools.campaign_analysis import CampaignAnalysis
+
+# Import affiliate marketing tools
+from reworked_platform.web.api.agent.tools.affiliate_product_research import AffiliateProductResearch
+from reworked_platform.web.api.agent.tools.competitor_affiliate_analysis import CompetitorAffiliateAnalysis
+from reworked_platform.web.api.agent.tools.conversion_optimization import ConversionOptimization
+from reworked_platform.web.api.agent.tools.affiliate_revenue_scaling import AffiliateRevenueScaling
 
 
 async def get_user_tools(
@@ -17,7 +27,7 @@ async def get_user_tools(
 
 
 def get_available_tools() -> List[Type[Tool]]:
-    return get_external_tools() + get_default_tools()
+    return get_external_tools() + get_default_tools() + get_marketing_tools() + get_affiliate_tools()
 
 
 def get_available_tools_names() -> List[str]:
@@ -36,6 +46,24 @@ def get_external_tools() -> List[Type[Tool]]:
 def get_default_tools() -> List[Type[Tool]]:
     return [
         Search,
+    ]
+
+
+def get_marketing_tools() -> List[Type[Tool]]:
+    return [
+        MarketResearch,
+        ContentGeneration,
+        WebDevelopment,
+        CampaignAnalysis,
+    ]
+
+
+def get_affiliate_tools() -> List[Type[Tool]]:
+    return [
+        AffiliateProductResearch,
+        CompetitorAffiliateAnalysis,
+        ConversionOptimization,
+        AffiliateRevenueScaling,
     ]
 
 
